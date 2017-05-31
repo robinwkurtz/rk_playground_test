@@ -1,0 +1,106 @@
+@mixin animated ($duration: 2.5s, $timing: linear, $count: infinite, $fill: both) {
+	-webkit-animation-duration:        $duration;
+	animation-duration:                $duration;
+	-webkit-animation-timing-function: $timing;
+	animation-timing-function:         $timing;
+	animation-iteration-count:         $count;
+	-webkit-animation-iteration-count: $count;
+	-webkit-animation-fill-mode:       $fill;
+	animation-fill-mode:               $fill;
+}
+
+@keyframes :global(css-spin) {
+	0% {
+		transform: rotate(0);
+	}
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@-webkit-keyframes :global(css-spin) {
+	0% {
+		-webkit-transform: rotate(0);
+	}
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+.css-spin {
+	-webkit-animation-name: css-spin;
+	animation-name:         css-spin;
+	@include animated(1.5s);
+}
+
+@keyframes :global(css-bounce) {
+	0%, 20%, 40%, 60%, 80%, 100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-5px);
+	}
+}
+
+@-webkit-keyframes :global(css-bounce) {
+	0%, 20%, 40%, 60%, 80%, 100% {
+		-webkit-transform: translateY(0);
+	}
+	50% {
+		-webkit-transform: translateY(-5px);
+	}
+}
+
+.css-bounce {
+	-webkit-animation-name: css-bounce;
+	animation-name:         css-bounce;
+	@include animated;
+}
+
+.isactive {
+	.css-bounce {
+		-webkit-animation-name: none;
+		animation-name: none;
+	}
+}
+
+.loader,
+.loaded {
+	@include transition(all 0.2s ease);
+}
+
+.fade-enter {
+	opacity: 0.01;
+}
+
+.fade-enter.fade-enter-active {
+	opacity: 1;
+	transition: opacity 1 ease-in;
+}
+
+.fade-leave {
+	opacity: 1;
+}
+
+.fade-leave.fade-leave-active {
+	opacity: 0.01;
+	transition: opacity 1 ease-in;
+}
+
+.slide-enter {
+	opacity: 0.01;
+}
+
+.slide-enter.slide-enter-active {
+	opacity: 1;
+	transition: opacity 1s ease-in;
+}
+
+.slide-leave {
+	opacity: 1;
+}
+
+.slide-leave.slide-leave-active {
+	opacity: 0.01;
+	transition: opacity 1s ease-in;
+}
